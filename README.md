@@ -126,6 +126,7 @@ Le classi nel markup sono le stesse di Webflow. `webflow.js` contiene le interaz
 - Script e CSS che venivano da `trentino-invest.netlify.app` sono in `assets/*/custom/`, copiati dal repo `pbaronio/trentino-invest`.
   Il riferimento a `css/style.css` è stato tolto: era un file di prova già cancellato dal repo (dava 404).
 - GSAP veniva caricato due volte (CDN Webflow + jsDelivr): ora una volta sola, in locale.
+- Lenis (`assets/vendor/lenis.min.js`) è racchiuso in una funzione: la build npm dichiara variabili globali (`t`, `i`, `e`) che venivano sovrascritte e bloccavano lo scroll con la rotellina.
 - `loader.js`: aggiunto un controllo nello slideshow, che andava in errore perché nel markup non ci sono miniature.
   Lo script viene caricato solo in home.
 - Hero: tolte le 4 slide nascoste rimaste dal template Webflow (immagini di prova mai visibili). Il titolo è un `<h1>`.
