@@ -1,0 +1,83 @@
+/* Disable Scroll on Loading */
+html.is--scroll-locked,
+html.is--scroll-locked body {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+main:has(.crisp-header.is--loading) {
+  height: 100dvh;
+  overflow: hidden;
+}
+  
+  /* Loading: Hidden */
+  .crisp-header.is--loading.is--hidden {
+    display: none;
+  }
+  
+  /* Loading: is Loading */
+  .crisp-header.is--loading .crisp-header__slider {
+    display: none;
+  }
+  
+  .crisp-header.is--loading .crisp-loader {
+    display: flex;
+  }
+  
+  /* Loading: Loading Done */
+  .crisp-loader {
+    display: none;
+  }
+  
+  /* Webflow Editor */
+  :is(.wf-design-mode, .wf-editor) .crisp-header.is--loading.is--hidden,
+  :is(.wf-design-mode, .wf-editor) .crisp-header.is--loading.is--hidden .crisp-header__slider{
+    display: flex;
+  }
+  
+  :is(.wf-design-mode, .wf-editor) .crisp-header.is--loading.is--hidden .crisp-loader {
+    display: none;
+  }
+
+  :is(.wf-design-mode, .wf-editor),
+  :is(.wf-design-mode, .wf-editor) body {
+    overflow: auto !important;
+    height: auto !important;
+    touch-action: auto !important;
+    overscroll-behavior: auto !important;
+  }
+  
+  /* SplitText H1 */
+  .crisp-header__h1 > * {
+    margin: -0.1em -0.05em;
+    padding: 0.1em 0.05em;
+  }
+
+  /* Navbar: hidden during loader */
+  body:has(.crisp-header.is--loading) [navbar] {
+    opacity: 0;
+  }
+
+  :is(.wf-design-mode, .wf-editor) [navbar] {
+    opacity: 1;
+  }
+  
+  /* CSS Animations */
+  .crisp-header__slider-nav-btn {
+    transition: border-color 0.75s cubic-bezier(0.625, 0.05, 0, 1);
+  }
+  
+  .crisp-header__slider-nav-btn img {
+    transform: scale(1) rotate(0.001deg);
+    transition: transform 0.75s cubic-bezier(0.625, 0.05, 0, 1);
+  }
+  
+  .crisp-header__slider-nav:has(.crisp-header__slider-nav-btn:hover) img {
+    transform: scale(0.825) rotate(0.001deg);
+  }
+  
+  .crisp-header__slider-nav:has(.crisp-header__slider-nav-btn:hover) .crisp-header__slider-nav-btn:hover img {
+    transform: scale(1) rotate(0.001deg);
+  }

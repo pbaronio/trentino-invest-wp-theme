@@ -1,0 +1,14 @@
+/*
+Theme Name: Trentino Invest
+Theme URI: https://www.trentinoinvest.it/
+Author: Paolo Baronio
+Description: Tema su misura per trentinoinvest.it, convertito dal progetto Webflow. Home a sezioni con testi e immagini modificabili, custom post type per Soci, Team e Investimenti. Richiede il plugin gratuito Secure Custom Fields.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 7.1
+Requires PHP: 8.0
+License: Proprietary
+Text Domain: trentino-invest
+*/
+
+/* Gli stili del sito sono in assets/css. Questo file serve solo a WordPress per riconoscere il tema. */

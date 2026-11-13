@@ -1,0 +1,28 @@
+.card-toggle {
+    width: 42px;
+    height: 42px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .plus-line {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 1.5px;
+    background: currentColor;
+    transform-origin: center;
+  }
+
+  .plus-line-h {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .plus-line-v {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }

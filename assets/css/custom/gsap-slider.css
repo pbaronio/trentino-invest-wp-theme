@@ -1,0 +1,92 @@
+
+[data-gsap-slider-init] {
+    --slider-status: on; /* Turn slider on/off */
+    --slider-spv: 3; /* Slides per view */ 
+    --slider-gap: 1.5em; /* Slides Gap */
+    overflow: visible;
+  }
+
+  [data-gsap-slider-collection] {
+    overflow: visible;
+    max-width: none;
+    -webkit-clip-path: inset(0 -100vw 0 0);
+    clip-path: inset(0 -100vw 0 0);
+  }
+
+  [data-gsap-slider-list] {
+    overflow: visible;
+    max-width: none;
+  }
+  
+  @media screen and (max-width: 991px) {
+     [data-gsap-slider-init] {
+      --slider-status: on; /* Turn slider on/off */
+      --slider-spv: 2.25; /* Slides per view */ 
+      --slider-gap: 1.5em; /* Slides Gap */
+    } 
+  }
+  
+  @media screen and (max-width: 767px) {
+    [data-gsap-slider-init] { 
+      --slider-status: on; /* Turn slider on/off */
+      --slider-spv: 1.15; /* Slides per view */ 
+      --slider-gap: 1em; /* Gap */
+    }
+  }
+  
+  [data-gsap-slider-item]:last-child {
+    margin-right: 0;
+  }
+  
+  /* Pagination */
+  [data-gsap-slider-status="not-active"] [data-gsap-slider-pagination] {
+    display: none;
+  }
+
+  [data-gsap-slider-controls] {
+    display: none;
+  }
+
+  [data-gsap-slider-pagination] {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625em;
+    width: 100%;
+    margin-top: 0.25em;
+  }
+
+  [data-gsap-slider-bullet] {
+    width: 0.8em;
+    height: 0.8em;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0.5px solid #000;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  [data-gsap-slider-bullet-status="active"] {
+    background: #000;
+  }
+  
+  /* Customization */
+  
+  .demo-card {
+    transition: all 0.3s ease;
+  }
+  
+  [data-gsap-slider-item-status="not-active"] .demo-card {
+    background-color: #131313;
+  }
+  
+  .demo-card__tag {
+    transition: all 0.3s ease;
+  }
+  
+  [data-gsap-slider-item-status="not-active"] .demo-card__tag {
+    opacity: 0;
+  }

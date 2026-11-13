@@ -1,0 +1,37 @@
+/* Hide the back-to-top wrapper on default (to prevent flash on loaded site) */
+[data-back-to-top="wrap"]{ opacity: 0;}
+
+/* Show the button in the Webflow environment */
+.wf-design-mode [data-back-to-top="wrap"],
+.w-editor [data-back-to-top="wrap"]{ opacity: 1; }
+
+
+.back-top__arrow-row{
+  transition: transform 0.5s cubic-bezier(.65, 0, 0, 1);
+}
+
+.back-top__button{
+  transition: border-width 0.5s cubic-bezier(.65, 0, 0, 1);
+}
+
+
+/* Keyboard focus state */
+.back-top__button:focus-visible{
+  border-width: 0.6em;
+}
+
+.back-top__button:focus-visible .back-top__arrow-row{
+  transform: translate(0px, -100%);
+}
+
+
+/* Hover styling */
+@media (hover: hover) {
+  .back-top__button:hover{
+    border-width: 0.6em;
+  }
+
+  .back-top__button:hover .back-top__arrow-row{
+    transform: translate(0px, -100%);
+  }
+}
