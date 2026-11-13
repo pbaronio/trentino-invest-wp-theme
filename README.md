@@ -127,6 +127,10 @@ Le classi nel markup sono le stesse di Webflow. `webflow.js` contiene le interaz
   Il riferimento a `css/style.css` è stato tolto: era un file di prova già cancellato dal repo (dava 404).
 - GSAP veniva caricato due volte (CDN Webflow + jsDelivr): ora una volta sola, in locale.
 - Lenis (`assets/vendor/lenis.min.js`) è racchiuso in una funzione: la build npm dichiara variabili globali (`t`, `i`, `e`) che venivano sovrascritte e bloccavano lo scroll con la rotellina.
+- `assets/js/scroll-guard.js` (nuovo): lo scroll resta bloccato durante l'animazione di apertura come prima, ma viene sbloccato
+  in ogni caso a fine animazione o al massimo dopo 9 secondi (scheda in background, script bloccato, errore). Se Lenis va in errore
+  viene spento e il sito torna allo scroll nativo del browser.
+- CSS e JS del tema hanno come versione la data di modifica del file: dopo un aggiornamento il browser non usa copie vecchie in cache.
 - `loader.js`: aggiunto un controllo nello slideshow, che andava in errore perché nel markup non ci sono miniature.
   Lo script viene caricato solo in home.
 - Hero: tolte le 4 slide nascoste rimaste dal template Webflow (immagini di prova mai visibili). Il titolo è un `<h1>`.

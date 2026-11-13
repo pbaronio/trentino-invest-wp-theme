@@ -65,6 +65,8 @@ add_action(
 
 		wp_enqueue_script( 'ti-lenis', $ven . 'lenis.min.js', array( $prev ), ti_ver( 'assets/vendor/lenis.min.js' ), $footer );
 		wp_enqueue_script( 'ti-swiper', $ven . 'swiper-bundle.min.js', array( 'ti-lenis' ), ti_ver( 'assets/vendor/swiper-bundle.min.js' ), $footer );
+		// Se loader.js non viene caricato, gli altri script non devono restare in attesa della sua animazione.
+		wp_add_inline_script( 'ti-swiper', 'window.whenLoaderReady=window.whenLoaderReady||function(c){c();};' );
 
 		$scripts = array( 'loader', 'fit-text', 'lenis', 'reveal-group', 'text-animation-reveal', 'accordion', 'slider-team', 'gsap-slider', 'back-to-top', 'card-investimenti', 'menu-button' );
 		if ( ! is_front_page() ) {
@@ -77,6 +79,9 @@ add_action(
 			wp_enqueue_script( $handle, $js . 'custom/' . $name . '.js', array( $prev ), ti_ver( 'assets/js/custom/' . $name . '.js' ), $footer );
 			$prev = $handle;
 		}
+
+		// Garantisce lo sblocco dello scroll dopo l'animazione di apertura e il ripiego sullo scroll nativo.
+		wp_enqueue_script( 'ti-scroll-guard', $js . 'scroll-guard.js', array( $prev ), ti_ver( 'assets/js/scroll-guard.js' ), $footer );
 
 		/* La home non usa i blocchi di Gutenberg: niente CSS dei blocchi. */
 		if ( is_front_page() ) {
