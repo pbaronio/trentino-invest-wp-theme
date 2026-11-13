@@ -13,6 +13,26 @@ Requisiti: WordPress 6.4+ (testato su 7.1), PHP 8.0+.
 
 ---
 
+## Anteprima locale (prima di andare su Aruba)
+
+Serve solo [Node.js](https://nodejs.org/) 20 o superiore: niente MAMP, Docker o database.
+
+```bash
+git clone https://github.com/pbaronio/trentino-invest-wp-theme.git
+cd trentino-invest-wp-theme
+./preview.sh
+```
+
+Il comando avvia WordPress Playground su `http://127.0.0.1:9400` e lo apre nel browser, già loggato come admin.
+Il blueprint (`.playground/blueprint.json`) imposta la lingua italiana, installa Secure Custom Fields, attiva il tema e
+apre **Aspetto → Importa contenuti**: clicca **Avvia importazione** e poi visita il sito.
+
+- Il tema è collegato dal vivo: modifichi un file, ricarichi la pagina.
+- Il sito resta salvato tra un avvio e l'altro; `./preview.sh --reset` riparte da zero.
+- Per fermarlo: `Ctrl+C` nel terminale.
+
+---
+
 ## Installazione su Aruba
 
 1. **Installa WordPress** dal pannello Aruba (installazione automatica) oppure a mano via FTP, usando il database già creato.
