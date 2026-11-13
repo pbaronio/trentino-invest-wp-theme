@@ -109,6 +109,47 @@
     armTimeout();
   }
 
+  /* ---------- Controllo sul campo: la rotellina deve far scorrere la pagina ---------- */
+
+  // Lenis intercetta la rotellina (preventDefault) e scorre lui la pagina. Se per qualsiasi motivo
+  // non ci riesce, la pagina resta ferma e si scorre solo trascinando la barra. Qui lo verifichiamo
+  // a ogni gesto: se la pagina non si è mossa, Lenis viene spento e si usa lo scroll nativo.
+  var wheelCheck = null;
+  window.addEventListener('wheel', function (ev) {
+    var l = window.lenis;
+    if (wheelCheck || !l || l.__tiNative || l.isStopped || ev.ctrlKey || !ev.deltaY) return;
+    if (html.classList.contains('is--scroll-locked')) return;
+    if (ev.target && ev.target.closest && ev.target.closest('[data-lenis-prevent],[data-lenis-prevent-wheel]')) return;
+
+    var startY = window.scrollY;
+    var max = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) - window.innerHeight;
+    if ((ev.deltaY > 0 && startY >= max - 1) || (ev.deltaY < 0 && startY <= 0)) return;
+
+    wheelCheck = setTimeout(function () {
+      wheelCheck = null;
+      var cur = window.lenis;
+      if (!cur || cur.__tiNative || cur.isStopped || html.classList.contains('is--scroll-locked')) return;
+      if (Math.abs(window.scrollY - startY) < 1) fallbackToNativeScroll('la rotellina non fa scorrere la pagina');
+    }, 450);
+  }, { passive: true });
+
+  // Stato per il debug: in console digita tiScrollDebug()
+  window.tiScrollDebug = function () {
+    var l = window.lenis;
+    var info = {
+      lenis: l ? (l.__tiNative ? 'nativo (Lenis spento)' : 'attivo') : 'assente',
+      lenisFermo: l ? !!l.isStopped : null,
+      bloccoLoader: html.classList.contains('is--scroll-locked'),
+      classiHtml: html.className,
+      overflowHtml: getComputedStyle(html).overflow,
+      overflowBody: getComputedStyle(document.body).overflow,
+      scrollY: Math.round(window.scrollY),
+      altezzaPagina: document.documentElement.scrollHeight
+    };
+    try { info.limiteLenis = l && !l.__tiNative ? l.limit : null; } catch (e) { info.limiteLenis = 'ERRORE: ' + e.message; }
+    return info;
+  };
+
   // Ritorno alla pagina dalla cache del browser (tasto indietro): mai restare bloccati.
   window.addEventListener('pageshow', function (ev) {
     if (ev.persisted) armTimeout();
